@@ -4,9 +4,7 @@ from .state import StateMethods, State
 from .eventbus import EventBus
 
 class StateMachine:
-    @classmethod
-    def create(cls, title, width, height, flags=0):
-        self = cls()
+    def __init__(self, title, width, height, flags=0, bus=EventBus()):
         pygame.display.set_caption(title)
         self.surface = pygame.display.set_mode((width, height), flags)
         self.rect = self.surface.get_rect()
@@ -15,7 +13,7 @@ class StateMachine:
         self.instances = {}
         self.delta = 0
 
-        self.bus = EventBus()
+        self.bus = bus
         self.bus.listener('Next State', self.listener_next_state)
 
         # changable variables

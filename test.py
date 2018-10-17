@@ -86,7 +86,7 @@ class Test2(State):
 def main():
     pygame.init()
     StateMachine.screen_center()
-    StateMachine.create("Test", 800, 600)
+    StateMachine("Test", 800, 600)
     Test2()
     StateMachine.main_loop(Test())
 
