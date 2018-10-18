@@ -8,7 +8,7 @@ from machine import StateMachine, State
 
 class Example(State):
     def __init__(self):
-        # This will save the this instance to state machine
+        # This instance is saved to the state machine
         State.__init__(self)
 
     # All draw code goes here
