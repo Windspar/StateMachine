@@ -52,6 +52,9 @@ class StateMachine:
             pygame.display.flip()
             self.delta = self.clock.tick(self.fps)
 
+    def quit(self):
+        self.running = False
+
     @classmethod
     def load_states(cls, path):
         pass

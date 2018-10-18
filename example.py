@@ -1,7 +1,3 @@
-Pygame StateMachine
-===================
-
-```Python
 import pygame
 from machine import StateMachine, State
 
@@ -29,8 +25,3 @@ if __name__ == '__main__':
     # Create Example and set it to first state
     StateMachine.main_loop(Example())
     pygame.quit()
-```
-
-#### Requires ####
-* pygame
-* develop on python 3.7

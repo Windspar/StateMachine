@@ -49,7 +49,7 @@ class Test(State):
             if event.key == pygame.K_SPACE:
                 self.state.flip('Test2', color=choice(self.colors))
         elif event.type == pygame.QUIT:
-            self.state.machine.running = False
+            self.state.machine.quit()
 
     def fade(self, timer):
         if self.color.b - timer.count < 1:
@@ -81,7 +81,7 @@ class Test2(State):
             if event.key == pygame.K_SPACE:
                 self.state.flip_back()
         elif event.type == pygame.QUIT:
-            self.state.machine.running = False
+            self.state.machine.quit()
 
 def main():
     pygame.init()
