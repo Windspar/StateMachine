@@ -11,11 +11,15 @@ class StateMethods:
 
     def flip(self, classname, *args, **kwargs):
         self.machine.bus.register_event("Next State", classname, *args, **kwargs)
-        #self.machine.next_state = classname, args, kwargs
 
     def flip_back(self, *args, **kwargs):
         self.machine.bus.register_event("Next State", self.previous_state, *args, **kwargs)
-        #self.machine.next_state = self.previous_state, args, kwargs
+
+    def listener(self, event_type, callback):
+        self.machine.bus.listener(event_type, callback)
+
+    def register_event(self, event_type, *args, **kwargs):
+        self.machine.bus.register_event(event_type, *args, **kwargs)
 
     def screen_entrance(self, regain_focus, previous_state, *args, **kwargs):
         if previous_state:

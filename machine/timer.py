@@ -15,6 +15,7 @@ class TickTimerData:
         self.parent.timers[self.identity] = self
 
     def pop(self):
+        self.stop = True
         self.parent.pop(self.identity)
 
     def reset(self):
@@ -41,6 +42,7 @@ class TickTimer:
         self.ticks = pygame.time.get_ticks()
         self.identity = 0
         self.timers = {}
+        self.pop_timers = []
 
     def __call__(self, interval, callback, pydata=None):
         timer = TickTimerData(self, interval, callback, pydata)
@@ -49,7 +51,7 @@ class TickTimer:
         return timer
 
     def pop(self, identity):
-        del self.timers[identity]
+        self.pop_timers.append(identity)
 
     def reset(self):
         for key in self.timers.keys():
@@ -62,3 +64,8 @@ class TickTimer:
         self.ticks = pygame.time.get_ticks()
         for key in self.timers.keys():
             self.timers[key].update()
+
+        for identity in self.pop_timers:
+            del self.timers[identity]
+
+        self.pop_timers = []
